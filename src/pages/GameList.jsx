@@ -1,6 +1,3 @@
-export default function GameList(){
-    return (
-        <>
-        </>
-    )
+export default function GameList() {
+  return <></>;
 }

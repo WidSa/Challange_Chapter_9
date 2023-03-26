@@ -1,6 +1,3 @@
-export default function GameDetail(){
-    return (
-        <>
-        </>
-    )
+export default function GameDetail() {
+  return <></>;
 }
