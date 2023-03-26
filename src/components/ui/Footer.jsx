@@ -1,10 +1,10 @@
 export default function Footer() {
   return (
     <footer id="footer">
-      <div className="text-light container">
+      <div className="text-light container-fluid ps-5 pe-5">
         <hr />
       </div>
-      <div className="container footer-link">
+      <div className="container-fluid footer-link ps-5 pe-5">
         <div className="row justify-content-between">
           <div className="col-lg-4 d-inline">
             <p className="text-light">© 2023 Your Games, inc. All Rights Reserved</p>
