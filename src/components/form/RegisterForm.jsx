@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
-import { auth } from "../services/firebase";
+import { auth } from "../../services/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function RegisterForm() {

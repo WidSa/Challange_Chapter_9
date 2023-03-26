@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 import "../assets/css/Register.css";
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "../components/form/RegisterForm";
 
 export default function Register() {
   return (
