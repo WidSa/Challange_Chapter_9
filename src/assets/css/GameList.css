@@ -1,0 +1,35 @@
+.wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url("../images/temple-construction.png");
+}
+
+.container {
+  min-height: 100vh;
+  /* background-color: red; */
+}
+
+.header .header-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 0;
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.content {
+  margin: 48px 0;
+  /* background-color: red; */
+}
+
+.page-title {
+  width: fit-content;
+  margin-left: auto;
+}
+
+.page-title h1 {
+  color: white;
+  font-size: 72px;
+}
