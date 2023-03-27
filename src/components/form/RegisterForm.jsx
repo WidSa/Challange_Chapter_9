@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import { auth } from "../../services/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router";
 
 export default function RegisterForm() {
   const emailRef = useRef();
@@ -9,6 +10,7 @@ export default function RegisterForm() {
   const confirmPasswordRef = useRef();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +23,7 @@ export default function RegisterForm() {
       setError("");
       setLoading(true);
       await createUserWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
+      navigate("/login");
     } catch (error) {
       setError(error.message);
     }

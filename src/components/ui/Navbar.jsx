@@ -1,8 +1,36 @@
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { auth } from "../../services/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function NavbarTop() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user.email);
+      } else {
+        setUser("Account");
+      }
+    });
+  }, []);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    signOut(auth)
+      .then(() => {
+        console.log("you are logged out");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <Navbar expand="lg" sticky="top" className="navbar-dark text-warning ">
       <div className="container-fluid p-1 ms-5 me-5">
@@ -19,10 +47,12 @@ export default function NavbarTop() {
               Game List
             </Nav.Link>
           </Nav>
-          <NavDropdown title="Account" id="basic-nav-dropdown">
+          <NavDropdown title={user} id="basic-nav-dropdown">
             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
+            <NavDropdown.Item href="#" onClick={handleLogout}>
+              Logout
+            </NavDropdown.Item>
           </NavDropdown>
         </Navbar.Collapse>
       </div>
