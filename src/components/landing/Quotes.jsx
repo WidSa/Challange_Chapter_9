@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Container, Row, Card } from "react-bootstrap";
 import "../../assets/css/landing.css"
-import twitter from "../../assets/images/twitter-card.png"
+// import twitter from "../../assets/images/twitter-card.png"
 import evant from "../../assets/images/evan-lahti.jpg"
 import jada from "../../assets/images/jada-griffin.jpg"
 import aaron from "../../assets/images/aaron-williams.jpg"

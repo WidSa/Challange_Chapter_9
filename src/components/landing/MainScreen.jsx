@@ -20,9 +20,9 @@ export default function MainScreen() {
                     <h3>Experience new traditional games</h3>
                     <Button variant="warning" className="btn btn-lg text-uppercase fw-bold mt-2 px-5" onClick={() => {
                         if(loggedIn){
+                            alert('Please login to play the game')
                             navigate('/login')
                         } else{
-                            alert('Please login to play the game')
                             navigate('/')
                         }
                     }}>
