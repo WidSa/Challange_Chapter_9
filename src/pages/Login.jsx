@@ -3,7 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useRef } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+} from "firebase/auth";
 import { auth } from "../services/firebase";
 
 export default function Login() {
@@ -11,7 +16,7 @@ export default function Login() {
   const password = useRef();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleLoginEmail = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(
       auth,
@@ -30,10 +35,69 @@ export default function Login() {
         alert("sign in failed");
       });
   };
+
+  const handleLoginWithGoogle = (e) => {
+    const providerGoogle = new GoogleAuthProvider();
+    signInWithPopup(auth, providerGoogle)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        alert("sign in with google account successfull");
+        navigate("/home");
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+        console.error(errorCode, errorMessage);
+        alert("Sign in with google account failed!");
+      });
+  };
+
+  const handleLoginWithFacebook = (e) => {
+    const providerFacebook = new FacebookAuthProvider();
+    signInWithPopup(auth, providerFacebook)
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        console.log(user)
+        alert("sign in with facebook account successfull");
+        navigate("/home");
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = FacebookAuthProvider.credentialFromError(error);
+        // ...
+        alert("Sign in with facebook account failed!");
+      });
+  };
+
   return (
     <>
-      <div class="body">
-        <div class="split left">
+      <div className="body">
+        <div className="split left">
           <h1>WELCOME!</h1>
           <h2>
             Play the game with all your courages, get the highest level and
@@ -41,8 +105,8 @@ export default function Login() {
           </h2>
         </div>
 
-        <div class="split right">
-          <div class="loginContent">
+        <div className="split right">
+          <div className="loginContent">
             <h1>Login to your account</h1>
             <h2>
               Don't have an account?{" "}
@@ -50,7 +114,7 @@ export default function Login() {
                 Register here
               </Link>
             </h2>
-            <Form className="mt-5" onSubmit={handleSubmit}>
+            <Form className="mt-5" onSubmit={handleLoginEmail}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label className="text-white">EMAIL ADDRESS</Form.Label>
                 <Form.Control
@@ -115,21 +179,15 @@ export default function Login() {
               </Button>
               <br></br>
               <br></br>
-              <div class="otherChoice">
+              <div className="otherChoice">
                 <h3>Other login methods : </h3>
-                <div class="facebook">
-                  <Button
-                    // onClick={this.handleLoginWithFacebook}
-                    variant="facebook"
-                  >
+                <div className="facebook">
+                  <Button onClick={handleLoginWithFacebook} variant="facebook">
                     Login with Facebook
                   </Button>
                 </div>
-                <div class="google">
-                  <Button
-                    // onClick={this.handleLoginWithGoogle}
-                    variant="google"
-                  >
+                <div className="google">
+                  <Button onClick={handleLoginWithGoogle} variant="google">
                     Login with Google
                   </Button>
                 </div>
