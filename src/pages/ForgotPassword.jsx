@@ -15,7 +15,7 @@ const handleForgotPassword = (e) => {
 
     sendPasswordResetEmail(auth, email.current.value)
       .then(() => {
-        alert(`Berhasil mengirim reset link ke ${email.current.value}`);
+        alert(`Berhasil mengirim reset link ke ${email.current.value}. silahkan login dengan password yang baru`);
 navigate("/login");
       })
       .catch((error) => {
