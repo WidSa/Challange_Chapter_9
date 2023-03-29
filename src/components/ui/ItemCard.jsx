@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 
 import "../../assets/css/ItemCard.css";
 
-import Image from "../../assets/images/game-list-1.png";
-
 export default function ItemCard({ to, image, title, status }) {
   return (
     <div className="item-card-wrapper">

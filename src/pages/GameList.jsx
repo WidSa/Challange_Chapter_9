@@ -26,7 +26,11 @@ export default function GameList() {
               <button>View All</button>
             </div>
             <div className="gl-content-list">
-              <ItemCard to="/" image={Image1} title="Rock Paper Scissors" />
+              <ItemCard
+                to="/game-detail"
+                image={Image1}
+                title="Rock Paper Scissors"
+              />
               <ItemCard
                 to="#"
                 image={Image2}
