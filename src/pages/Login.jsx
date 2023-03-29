@@ -141,7 +141,7 @@ export default function Login() {
                 />
               </Form.Group>
 
-              <Link className="recoverPassword text-right" to="/register">
+              <Link className="recoverPassword text-right" to="/forgot-password">
                 Forgot password?
               </Link>
               <br></br>
