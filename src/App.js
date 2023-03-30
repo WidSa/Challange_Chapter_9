@@ -8,6 +8,8 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 import GameList from './pages/GameList'
 import GameDetail from './pages/GameDetail'
+import ForgotPassword from './pages/ForgotPassword';
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/game-list" element={<GameList />} />
         <Route path="/game-detail" element={<GameDetail />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </Router>
   );
